@@ -37,10 +37,16 @@ export default class BookList extends Component {
         }
       ]
     };
+    this.removeFromCurShelf = this.removeFromCurShelf.bind(this);
+    this.shelfChange = this.shelfChange.bind(this);
   }
 
-  removeFromCurShelf(book) {
-    this.setState(() => {}, this.shelfChange);
+  removeFromCurShelf(book, currArray) {
+    this.setState(() => {
+      this.setState(() => {
+        currArray: this.state.currArray.filter();
+      });
+    }, this.shelfChange);
   }
 
   shelfChange(book) {
@@ -59,6 +65,7 @@ export default class BookList extends Component {
             booksRead={this.state.booksRead}
             booksCurRead={this.state.booksCurRead}
             booksWanToRead={this.state.booksWanToRead}
+            removeFromCurShelf={this.removeFromCurShelf}
           />
 
           <div className="open-search">
