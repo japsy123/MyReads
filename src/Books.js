@@ -22,22 +22,14 @@ export default class Books extends Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select>
+            <select onClick={this.handleOnclick}>
               <option value="move" disabled>
                 Move to...
               </option>
-              <option onClick={this.handleOnclick} value="currentlyReading">
-                Currently Reading
-              </option>
-              <option onClick={this.handleOnclick} value="wantToRead">
-                Want to Read
-              </option>
-              <option onClick={this.handleOnclick} value="read">
-                Read
-              </option>
-              <option onClick={this.handleOnclick} value="none">
-                None
-              </option>
+              <option value="currentlyReading">Currently Reading</option>
+              <option value="wantToRead">Want to Read</option>
+              <option value="read">Read</option>
+              <option value="none">None</option>
             </select>
           </div>
         </div>
