@@ -10,6 +10,7 @@ export default class Books extends Component {
     console.log(event.target.value);
 
     if (event.target.value === "read") {
+      // Remove from existing array
       // Push to the read Array
       console.log("pushing read");
     }

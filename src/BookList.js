@@ -39,6 +39,10 @@ export default class BookList extends Component {
     };
   }
 
+  removeFromCurShelf(book) {
+    this.setState(() => {}, this.shelfChange);
+  }
+
   shelfChange(book) {
     this.setState(() => {});
   }
