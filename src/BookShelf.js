@@ -12,7 +12,10 @@ export default class BookShelf extends Component {
               {this.props.booksCurRead.map((book, index) => {
                 return (
                   <li key={index}>
-                    <Books books={book} />
+                    <Books
+                      books={book}
+                      currentArray={this.props.booksCurRead}
+                    />
                   </li>
                 );
               })}
@@ -26,7 +29,10 @@ export default class BookShelf extends Component {
             {this.props.booksWanToRead.map((book, index) => {
               return (
                 <li key={index}>
-                  <Books books={book} />
+                  <Books
+                    books={book}
+                    currentArray={this.props.booksWanToRead}
+                  />
                 </li>
               );
             })}
@@ -39,7 +45,7 @@ export default class BookShelf extends Component {
             {this.props.booksRead.map((book, index) => {
               return (
                 <li key={index}>
-                  <Books books={book} />
+                  <Books books={book} currentArray={this.props.booksRead} />
                 </li>
               );
             })}

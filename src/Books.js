@@ -7,7 +7,12 @@ export default class Books extends Component {
   }
 
   handleOnclick(event) {
-    console.log("hi");
+    console.log(event.target.value);
+
+    if (event.target.value === "read") {
+      // Push to the read Array
+      console.log("pushing read");
+    }
   }
   render() {
     return (
@@ -22,14 +27,14 @@ export default class Books extends Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select onClick={this.handleOnclick}>
+            <select onChange={this.handleOnclick}>
               <option value="move" disabled>
                 Move to...
               </option>
+              <option value="none">None</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
-              <option value="none">None</option>
             </select>
           </div>
         </div>

@@ -39,6 +39,10 @@ export default class BookList extends Component {
     };
   }
 
+  shelfChange(book) {
+    this.setState(() => {});
+  }
+
   render() {
     return (
       <div>
