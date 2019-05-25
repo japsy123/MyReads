@@ -20,7 +20,7 @@ class BooksApp extends React.Component {
     return (
       <BrowserRouter>
         <div className="app">
-          <Route path="/serach" Component={SearchBooks} />
+          <Route path="/search" component={SearchBooks} />
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
