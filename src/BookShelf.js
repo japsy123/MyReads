@@ -9,8 +9,12 @@ export default class BookShelf extends Component {
           <h2 className="bookshelf-title">Currently Reading</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
-              {this.props.booksCurRead.map(book => {
-                return <Books books={book} />;
+              {this.props.booksCurRead.map((book, index) => {
+                return (
+                  <li key={index}>
+                    <Books books={book} />
+                  </li>
+                );
               })}
             </ol>
           </div>
@@ -19,8 +23,12 @@ export default class BookShelf extends Component {
           <h2 className="bookshelf-title">Want to Reading</h2>
           <div className="bookshelf-books" />
           <ol className="books-grid">
-            {this.props.booksWanToRead.map(book => {
-              return <Books books={book} />;
+            {this.props.booksWanToRead.map((book, index) => {
+              return (
+                <li key={index}>
+                  <Books books={book} />
+                </li>
+              );
             })}
           </ol>
         </div>
@@ -28,8 +36,12 @@ export default class BookShelf extends Component {
           <h2 className="bookshelf-title">Read</h2>
           <div className="bookshelf-books" />
           <ol className="books-grid">
-            {this.props.booksRead.map(book => {
-              return <Books books={book} />;
+            {this.props.booksRead.map((book, index) => {
+              return (
+                <li key={index}>
+                  <Books books={book} />
+                </li>
+              );
             })}
           </ol>
         </div>
