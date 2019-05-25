@@ -10,7 +10,7 @@ export default class BookShelf extends Component {
           <div className="bookshelf-books">
             <ol className="books-grid">
               {this.props.booksCurRead.map(book => {
-                return <Books />;
+                return <Books books={book} />;
               })}
             </ol>
           </div>
@@ -20,7 +20,7 @@ export default class BookShelf extends Component {
           <div className="bookshelf-books" />
           <ol className="books-grid">
             {this.props.booksWanToRead.map(book => {
-              return <Books />;
+              return <Books books={book} />;
             })}
           </ol>
         </div>
@@ -29,7 +29,7 @@ export default class BookShelf extends Component {
           <div className="bookshelf-books" />
           <ol className="books-grid">
             {this.props.booksRead.map(book => {
-              return <Books />;
+              return <Books books={book} />;
             })}
           </ol>
         </div>

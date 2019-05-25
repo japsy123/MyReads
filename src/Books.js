@@ -14,7 +14,7 @@ export default class Books extends Component {
               style={{
                 width: 128,
                 height: 188,
-                backgroundImage: 'url("")'
+                backgroundImage: `url(${this.props.books.url})`
               }}
             />
             <div className="book-shelf-changer">
@@ -29,8 +29,8 @@ export default class Books extends Component {
               </select>
             </div>
           </div>
-          <div className="book-title"> </div>
-          <div className="book-authors" />
+          <div className="book-title"> {this.props.books.bookTitle}</div>
+          <div className="book-authors">{this.props.books.bookAuthor}</div>
         </div>
       </li>
     );
