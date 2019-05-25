@@ -3,6 +3,7 @@ import React, { Component } from "react";
 export default class Books extends Component {
   constructor(props) {
     super(props);
+    this.handleOnclick = this.handleOnclick.bind(this);
   }
   render() {
     return (
@@ -22,7 +23,9 @@ export default class Books extends Component {
                 <option value="move" disabled>
                   Move to...
                 </option>
-                <option value="currentlyReading">Currently Reading</option>
+                <option onClick={this.handleOnclick} value="currentlyReading">
+                  Currently Reading
+                </option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
                 <option value="none">None</option>
