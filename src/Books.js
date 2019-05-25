@@ -9,11 +9,13 @@ export default class Books extends Component {
   handleOnclick(event) {
     console.log(event.target.value);
 
-    if (event.target.value === "read") {
-      // Remove from existing array
-      // Push to the read Array
-      console.log("pushing read");
-    }
+    // Remove from existing array
+    this.props.pushIt(
+      this.props.books,
+      this.props.currentArray,
+      event.target.value
+    );
+    // Push to the read Array
   }
   render() {
     return (

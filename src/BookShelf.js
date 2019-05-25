@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import Books from "./Books";
 
 export default class BookShelf extends Component {
+  constructor(props) {
+    super(props);
+    this.pushIt = this.pushIt.bind(this);
+  }
+
+  pushIt(books, currentArray, value) {
+    this.props.removeFromCurShelf(books, currentArray, value);
+  }
   render() {
     return (
       <div>
@@ -15,6 +23,7 @@ export default class BookShelf extends Component {
                     <Books
                       books={book}
                       currentArray={this.props.booksCurRead}
+                      pushIt={this.pushIt}
                     />
                   </li>
                 );
@@ -32,6 +41,7 @@ export default class BookShelf extends Component {
                   <Books
                     books={book}
                     currentArray={this.props.booksWanToRead}
+                    pushIt={this.pushIt}
                   />
                 </li>
               );
@@ -45,7 +55,11 @@ export default class BookShelf extends Component {
             {this.props.booksRead.map((book, index) => {
               return (
                 <li key={index}>
-                  <Books books={book} currentArray={this.props.booksRead} />
+                  <Books
+                    books={book}
+                    currentArray={this.props.booksRead}
+                    pushIt={this.pushIt}
+                  />
                 </li>
               );
             })}

@@ -41,15 +41,12 @@ export default class BookList extends Component {
     this.shelfChange = this.shelfChange.bind(this);
   }
 
-  removeFromCurShelf(book, currArray) {
-    this.setState(() => {
-      this.setState(() => {
-        currArray: this.state.currArray.filter();
-      });
-    }, this.shelfChange);
+  removeFromCurShelf(book, currArray, value) {
+    console.log(value + " from book list", currArray, book);
+    this.setState(() => {}, this.shelfChange(book, value));
   }
 
-  shelfChange(book) {
+  shelfChange(book, value) {
     this.setState(() => {});
   }
 
