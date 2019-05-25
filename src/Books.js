@@ -30,7 +30,7 @@ export default class Books extends Component {
             </div>
           </div>
           <div className="book-title"> </div>
-          <div className="book-authors">Orson Scott Card</div>
+          <div className="book-authors" />
         </div>
       </li>
     );
