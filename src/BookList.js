@@ -62,7 +62,18 @@ export default class BookList extends Component {
 
   shelfChange(book, value) {
     console.log("Shelfchange");
-    this.setState(() => {});
+    const newArr = this.state[value];
+    const final = [...newArr, book];
+    console.log(final);
+
+    this.setState(
+      () => ({
+        [value]: final
+      }),
+      function(value) {
+        console.log(this.state);
+      }
+    );
   }
 
   render() {
