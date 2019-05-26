@@ -43,21 +43,25 @@ export default class BookList extends Component {
 
   removeFromCurShelf(book, currArray, value) {
     const newArr = this.state[currArray];
-    console.log(value);
-    console.log(currArray);
+    // console.log(value);
+    // console.log(currArray);
     if (value !== currArray && value !== "none") {
       const final = newArr.filter(abook => {
-        console.log(abook.bookAuthor);
-        console.log(book.bookAuthor);
+        // console.log(abook.bookAuthor);
+        // console.log(book.bookAuthor);
         return abook.bookAuthor !== book.bookAuthor;
       });
-      this.setState(() => ({
-        [currArray]: final
-      }));
+      this.setState(
+        () => ({
+          [currArray]: final
+        }),
+        this.shelfChange(book, value)
+      );
     }
   }
 
   shelfChange(book, value) {
+    console.log("Shelfchange");
     this.setState(() => {});
   }
 
