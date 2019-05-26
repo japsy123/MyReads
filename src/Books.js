@@ -34,9 +34,9 @@ export default class Books extends Component {
                 Move to...
               </option>
               <option value="none">None</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
+              <option value="booksCurRead">Currently Reading</option>
+              <option value="booksWanToRead">Want to Read</option>
+              <option value="booksRead">Read</option>
             </select>
           </div>
         </div>
