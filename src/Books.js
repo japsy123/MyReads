@@ -7,12 +7,11 @@ export default class Books extends Component {
   }
 
   handleOnclick(event) {
-    console.log(event.target.value);
-
     // Remove from existing array
     this.props.pushIt(
       this.props.books,
       this.props.currentArray,
+
       event.target.value
     );
     // Push to the read Array

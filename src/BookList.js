@@ -41,9 +41,21 @@ export default class BookList extends Component {
     this.shelfChange = this.shelfChange.bind(this);
   }
 
+  //   currArray = this.state[currArray].filter(abook => {
+  //     console.log(abook.bookAuthor);
+  //     console.log(book.bookAuthor);
+
+  //     return abook.bookTitle === book.bookAuthor;
+  //   });
+
   removeFromCurShelf(book, currArray, value) {
-    console.log(value + " from book list", currArray, book);
-    this.setState(() => {}, this.shelfChange(book, value));
+    const newArr = this.state[currArray];
+    const final = newArr.filter(abook => {
+      return abook.bookAuthor !== book.bookAuthor;
+    });
+    this.setState({
+      [currArray]: final
+    });
   }
 
   shelfChange(book, value) {
@@ -71,7 +83,6 @@ export default class BookList extends Component {
             </Link>
           </div>
         </div>
-        )}
       </div>
     );
   }
