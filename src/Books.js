@@ -10,7 +10,7 @@ export default class Books extends Component {
     // Remove from existing array
     this.props.pushIt(
       this.props.books,
-      this.props.currentArray,
+      this.props.curShelf,
 
       event.target.value
     );
@@ -25,7 +25,7 @@ export default class Books extends Component {
             style={{
               width: 128,
               height: 188,
-              backgroundImage: `url(${this.props.books.url})`
+              backgroundImage: `url(${this.props.url})`
             }}
           />
           <div className="book-shelf-changer">
@@ -33,15 +33,16 @@ export default class Books extends Component {
               <option value="move" disabled>
                 Move to...
               </option>
+
+              <option value="currentlyReading">Currently Reading</option>
+              <option value="wantToRead">Want to Read</option>
+              <option value="read">Read</option>
               <option value="none">None</option>
-              <option value="booksCurRead">Currently Reading</option>
-              <option value="booksWanToRead">Want to Read</option>
-              <option value="booksRead">Read</option>
             </select>
           </div>
         </div>
-        <div className="book-title"> {this.props.books.bookTitle}</div>
-        <div className="book-authors">{this.props.books.bookAuthor}</div>
+        <div className="book-title"> {this.props.title}</div>
+        <div className="book-authors">{} </div>
       </div>
     );
   }

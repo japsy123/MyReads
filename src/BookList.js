@@ -5,75 +5,7 @@ import BookShelf from "./BookShelf";
 export default class BookList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      booksRead: [
-        {
-          bookTitle: "Reality",
-          bookAuthor: "Jal Panchal",
-          url:
-            "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api"
-        },
-        {
-          bookTitle: "End Game",
-          bookAuthor: "Steve",
-          url:
-            "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api"
-        }
-      ],
-      booksCurRead: [
-        {
-          bookTitle: "Halo",
-          bookAuthor: "Jackson",
-          url:
-            "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api"
-        }
-      ],
-      booksWanToRead: [
-        {
-          bookTitle: "Meet",
-          bookAuthor: "Kacy",
-          url:
-            "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api"
-        }
-      ]
-    };
-    this.removeFromCurShelf = this.removeFromCurShelf.bind(this);
-    this.shelfChange = this.shelfChange.bind(this);
-  }
-
-  removeFromCurShelf(book, currArray, value) {
-    const newArr = this.state[currArray];
-    // console.log(value);
-    // console.log(currArray);
-    if (value !== currArray && value !== "none") {
-      const final = newArr.filter(abook => {
-        // console.log(abook.bookAuthor);
-        // console.log(book.bookAuthor);
-        return abook.bookAuthor !== book.bookAuthor;
-      });
-      this.setState(
-        () => ({
-          [currArray]: final
-        }),
-        this.shelfChange(book, value)
-      );
-    }
-  }
-
-  shelfChange(book, value) {
-    console.log("Shelfchange");
-    const newArr = this.state[value];
-    const final = [...newArr, book];
-    console.log(final);
-
-    this.setState(
-      () => ({
-        [value]: final
-      }),
-      function(value) {
-        console.log(this.state);
-      }
-    );
+    this.state = {};
   }
 
   render() {
@@ -85,10 +17,10 @@ export default class BookList extends Component {
           </div>
 
           <BookShelf
-            booksRead={this.state.booksRead}
-            booksCurRead={this.state.booksCurRead}
-            booksWanToRead={this.state.booksWanToRead}
-            removeFromCurShelf={this.removeFromCurShelf}
+            read={this.props.read}
+            currentlyReading={this.props.currentlyReading}
+            wantToRead={this.props.wantToRead}
+            removeFromCurShelf={this.props.removeFromCurShelf}
           />
 
           <div className="open-search">

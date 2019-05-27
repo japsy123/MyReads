@@ -1,13 +1,41 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { search } from "./BooksAPI";
+import Books from "./Books";
+import * as BooksAPI from "./BooksAPI";
 export default class SearchBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookId: ""
+      query: "",
+      books: []
     };
+    this.pushIt = this.pushIt.bind(this);
+
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
+  pushIt(books, curShelf, value) {
+    this.props.removeFromCurShelf(books, curShelf, value);
+  }
+  handleOnChange(e) {
+    this.setState(
+      {
+        [e.target.name]: e.target.value
+      },
+      () => {
+        BooksAPI.search(this.state.query).then(data =>
+          this.setState(
+            {
+              books: this.state.books.concat(data)
+            },
+            () => {
+              console.log(data);
+            }
+          )
+        );
+      }
+    );
+  }
+
   render() {
     return (
       <div className="search-books">
@@ -20,12 +48,30 @@ export default class SearchBooks extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              value={this.state.bookId}
+              onChange={this.handleOnChange}
+              name="query"
+              value={this.state.query}
             />
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid" />
+          <ol className="books-grid">
+            {this.state.books.length >= 1 &&
+              this.state.books.map(book => {
+                return (
+                  <li>
+                    <Books
+                      books={book}
+                      url={book.imageLinks.thumbnail}
+                      curShelf="booksCurRead"
+                      title={book.title}
+                      shelf={book.shelf}
+                      pushIt={this.pushIt}
+                    />
+                  </li>
+                );
+              })}
+          </ol>
         </div>
       </div>
     );
