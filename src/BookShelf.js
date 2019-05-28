@@ -1,26 +1,39 @@
 import React, { Component } from "react";
 import Books from "./Books";
 
-export default class BookShelf extends Component {
-  constructor(props) {
-    super(props);
-    this.pushIt = this.pushIt.bind(this);
-    this.arr = [];
-  }
-
-  pushIt(books, curShelf, value) {
-    this.props.removeFromCurShelf(books, curShelf, value);
-  }
-  render() {
-    return (
-      <div>
-        <div className="bookshelf">
-          <h2 className="bookshelf-title">Currently Reading</h2>
-          <div className="bookshelf-books">
-            <ol className="books-grid" />
+const BookShelf = props => {
+  const { books } = props;
+  const shelfTypes = [
+    { type: "currentlyReading", title: "Currently Reading" },
+    { type: "wantToRead", title: "Want to Read" },
+    { type: "read", title: "Read" }
+  ];
+  return (
+    <div>
+      {shelfTypes.map(shelf => {
+        const currentBooks = books.filter(book => book.shelf === shelf.type);
+        // console.log(currentBooks);
+        return (
+          <div className="bookshelf">
+            <h2 className="bookshelf-title">{shelf.title}</h2>
+            <div className="bookshelf-books">
+              <ol className="books-grid">
+                {currentBooks.map(book => {
+                  return (
+                    <Books
+                      books={book}
+                      curShelf={shelf.type}
+                      changeShelf={props.changeShelf}
+                    />
+                  );
+                })}
+              </ol>
+            </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-}
+        );
+      })}
+    </div>
+  );
+};
+
+export default BookShelf;

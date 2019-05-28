@@ -17,10 +17,8 @@ export default class BookList extends Component {
           </div>
 
           <BookShelf
-            read={this.props.read}
-            currentlyReading={this.props.currentlyReading}
-            wantToRead={this.props.wantToRead}
-            removeFromCurShelf={this.props.removeFromCurShelf}
+            books={this.props.books}
+            changeShelf={this.props.changeShelf}
           />
 
           <div className="open-search">

@@ -1,23 +1,17 @@
 import React, { Component } from "react";
+import ChangeShelf from "./ChangeShelf";
+import nopic from "./image/nopic.png";
 
-export default class Books extends Component {
-  constructor(props) {
-    super(props);
-    this.handleOnclick = this.handleOnclick.bind(this);
-  }
+const Books = props => {
+  const { books, changeShelf } = props;
 
-  handleOnclick(event) {
-    // Remove from existing array
-    this.props.pushIt(
-      this.props.books,
-      this.props.curShelf,
-
-      event.target.value
-    );
-    // Push to the read Array
-  }
-  render() {
-    return (
+  const bgImage =
+    books.imageLinks && books.imageLinks.thumbnail
+      ? books.imageLinks.thumbnail
+      : nopic;
+  const title = books.title ? books.title : "No title for this book";
+  return (
+    <li>
       <div className="book">
         <div className="book-top">
           <div
@@ -25,25 +19,27 @@ export default class Books extends Component {
             style={{
               width: 128,
               height: 188,
-              backgroundImage: `url(${this.props.url})`
+              backgroundImage: `url(${bgImage})`
             }}
           />
-          <div className="book-shelf-changer">
-            <select onChange={this.handleOnclick}>
-              <option value="move" disabled>
-                Move to...
-              </option>
-
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <ChangeShelf
+            curShelf={props.curShelf}
+            book={books}
+            changeShelf={changeShelf}
+          />
         </div>
-        <div className="book-title"> {this.props.title}</div>
-        <div className="book-authors">{} </div>
+
+        <div className="book-title"> {books.title}</div>
+        <div className="book-authors">
+          {books.authors &&
+            books.authors.map((author, i) => (
+              <div className="book-authors" key={i}>
+                {author}
+              </div>
+            ))}
+        </div>
       </div>
-    );
-  }
-}
+    </li>
+  );
+};
+export default Books;

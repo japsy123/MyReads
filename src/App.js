@@ -11,13 +11,32 @@ class BooksApp extends React.Component {
     this.state = {
       books: []
     };
+    this.changeShelf = this.changeShelf.bind(this);
   }
 
   componentDidMount() {
     BooksAPI.getAll().then(book => {
-      this.setState({
-        books: book
-      });
+      this.setState(
+        {
+          books: book
+        },
+        () => {
+          // console.log(this.state.books);
+        }
+      );
+    });
+  }
+
+  changeShelf(bookToChange, shelf) {
+    console.log(bookToChange);
+    console.log(shelf);
+    BooksAPI.update(bookToChange, shelf).then(response => {
+      bookToChange.shelf = shelf;
+      this.setState(prevState => ({
+        books: prevState.books
+          .filter(book => book.id !== bookToChange.id)
+          .concat(bookToChange)
+      }));
     });
   }
   render() {
@@ -26,9 +45,21 @@ class BooksApp extends React.Component {
         <Route
           exact
           path="/search"
-          render={props => <SearchBooks {...props} />}
+          render={props => (
+            <SearchBooks {...props} changeShelf={this.changeShelf} />
+          )}
         />
-        <Route exact path="/" render={props => <BookList {...props} />} />
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <BookList
+              {...props}
+              books={this.state.books}
+              changeShelf={this.changeShelf}
+            />
+          )}
+        />
       </BrowserRouter>
     );
   }

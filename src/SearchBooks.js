@@ -9,31 +9,37 @@ export default class SearchBooks extends Component {
       query: "",
       books: []
     };
-    this.pushIt = this.pushIt.bind(this);
 
     this.handleOnChange = this.handleOnChange.bind(this);
   }
-  pushIt(books, curShelf, value) {
-    this.props.removeFromCurShelf(books, curShelf, value);
-  }
+
   handleOnChange(e) {
+    const searchQuery = e.target.value;
     this.setState(
       {
-        [e.target.name]: e.target.value
-      },
-      () => {
-        BooksAPI.search(this.state.query).then(data =>
-          this.setState(
-            {
-              books: this.state.books.concat(data)
-            },
-            () => {
-              console.log(data);
-            }
-          )
-        );
+        [e.target.name]: searchQuery
       }
+      //   },
+      //   () => {
+      //     BooksAPI.search(this.state.query).then(data =>
+      //       this.setState(
+      //         {
+      //           books: this.state.books.concat(data)
+      //         },
+      //         () => {
+      //           console.log(data);
+      //         }
+      //       )
+      //     );
+      //   }
     );
+    if (searchQuery) {
+      BooksAPI.search(searchQuery.trim(), 20).then(books => {
+        books.length > 0
+          ? this.setState({ books })
+          : this.setState({ books: [] });
+      });
+    } else this.setState({ newBooks: [] });
   }
 
   render() {
@@ -62,11 +68,10 @@ export default class SearchBooks extends Component {
                   <li>
                     <Books
                       books={book}
-                      url={book.imageLinks.thumbnail}
-                      curShelf="booksCurRead"
+                      curShelf="none"
                       title={book.title}
                       shelf={book.shelf}
-                      pushIt={this.pushIt}
+                      changeShelf={this.props.changeShelf}
                     />
                   </li>
                 );
