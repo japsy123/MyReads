@@ -10,11 +10,11 @@ const BookShelf = props => {
   ];
   return (
     <div>
-      {shelfTypes.map(shelf => {
+      {shelfTypes.map((shelf, i) => {
         const currentBooks = books.filter(book => book.shelf === shelf.type);
         // console.log(currentBooks);
         return (
-          <div className="bookshelf">
+          <div className="bookshelf" key={i}>
             <h2 className="bookshelf-title">{shelf.title}</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
@@ -23,6 +23,7 @@ const BookShelf = props => {
                     <Books
                       books={book}
                       curShelf={shelf.type}
+                      key={book.id}
                       changeShelf={props.changeShelf}
                     />
                   );

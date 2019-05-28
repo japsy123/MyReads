@@ -15,24 +15,9 @@ export default class SearchBooks extends Component {
 
   handleOnChange(e) {
     const searchQuery = e.target.value;
-    this.setState(
-      {
-        [e.target.name]: searchQuery
-      }
-      //   },
-      //   () => {
-      //     BooksAPI.search(this.state.query).then(data =>
-      //       this.setState(
-      //         {
-      //           books: this.state.books.concat(data)
-      //         },
-      //         () => {
-      //           console.log(data);
-      //         }
-      //       )
-      //     );
-      //   }
-    );
+    this.setState({
+      [e.target.name]: searchQuery
+    });
     if (searchQuery) {
       BooksAPI.search(searchQuery.trim(), 20).then(books => {
         books.length > 0
@@ -65,16 +50,14 @@ export default class SearchBooks extends Component {
             {this.state.books.length >= 1 &&
               this.state.books.map(book => {
                 return (
-                  <li>
-                    <Books
-                      books={book}
-                      curShelf="none"
-                      title={book.title}
-                      shelf={book.shelf}
-                      key={book.id}
-                      changeShelf={this.props.changeShelf}
-                    />
-                  </li>
+                  <Books
+                    books={book}
+                    curShelf="none"
+                    title={book.title}
+                    shelf={book.shelf}
+                    key={book.id}
+                    changeShelf={this.props.changeShelf}
+                  />
                 );
               })}
           </ol>
