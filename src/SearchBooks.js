@@ -71,6 +71,7 @@ export default class SearchBooks extends Component {
                       curShelf="none"
                       title={book.title}
                       shelf={book.shelf}
+                      key={book.id}
                       changeShelf={this.props.changeShelf}
                     />
                   </li>
