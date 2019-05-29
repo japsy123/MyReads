@@ -10,21 +10,32 @@ body {
 
 body,
 .app {
-  background: #eacda3;
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffffff,
+    #ece9e6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #ece9e6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* main page */
 
 .list-books-title {
   padding: 10px 0;
-  background: #7b6df562;
+  background: #f3929236;
   text-align: center;
 }
 
 .list-books-title h1 {
   font-weight: 400;
   margin: 0;
-  color: white;
+  color: rgba(228, 47, 86, 0.692);
+  font-weight: bold;
 }
 
 .list-books-content {
