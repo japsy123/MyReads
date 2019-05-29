@@ -7,7 +7,8 @@ export default class SearchBooks extends Component {
     super(props);
     this.state = {
       query: "",
-      books: []
+      books: [],
+      noBooks: false
     };
 
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -22,9 +23,9 @@ export default class SearchBooks extends Component {
       BooksAPI.search(searchQuery.trim(), 20).then(books => {
         books.length > 0
           ? this.setState({ books })
-          : this.setState({ books: [] });
+          : this.setState({ books: [], noBooks: true });
       });
-    } else this.setState({ newBooks: [] });
+    } else this.setState({ newBooks: [], noBooks: true });
   }
 
   render() {
@@ -51,7 +52,8 @@ export default class SearchBooks extends Component {
               this.state.books.map(book => {
                 return (
                   <Books
-                    books={book}
+                    book={book}
+                    books={this.props.mainBooks}
                     curShelf="none"
                     title={book.title}
                     shelf={book.shelf}
@@ -61,6 +63,7 @@ export default class SearchBooks extends Component {
                 );
               })}
           </ol>
+          {this.state.noBooks && <h2>No matching results at this moment :(</h2>}
         </div>
       </div>
     );

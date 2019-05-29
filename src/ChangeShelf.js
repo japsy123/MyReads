@@ -14,9 +14,20 @@ export default class ChangeShelf extends Component {
     }
   }
   render() {
+    const { book, books } = this.props;
+
+    let currShelf = "none";
+
+    for (let i of books) {
+      if (i.id === book.id) {
+        currShelf = i.shelf;
+        break;
+      }
+    }
+
     return (
       <div className="book-shelf-changer">
-        <select onChange={this.handleOnclick} defaultValue="none">
+        <select onChange={this.handleOnclick} defaultValue={currShelf}>
           <option value="move" disabled>
             Move to...
           </option>

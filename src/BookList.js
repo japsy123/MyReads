@@ -5,7 +5,6 @@ import BookShelf from "./BookShelf";
 export default class BookList extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   render() {

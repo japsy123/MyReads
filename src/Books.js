@@ -3,13 +3,13 @@ import ChangeShelf from "./ChangeShelf";
 import nopic from "./image/nopic.png";
 
 const Books = props => {
-  const { books, changeShelf } = props;
+  const { book, books, changeShelf } = props;
 
   const bgImage =
-    books.imageLinks && books.imageLinks.thumbnail
-      ? books.imageLinks.thumbnail
+    book.imageLinks && book.imageLinks.thumbnail
+      ? book.imageLinks.thumbnail
       : nopic;
-  const title = books.title ? books.title : "No title for this book";
+  const title = book.title ? book.title : "No title for this book";
   return (
     <li>
       <div className="book">
@@ -24,15 +24,16 @@ const Books = props => {
           />
           <ChangeShelf
             curShelf={props.curShelf}
-            book={books}
+            book={book}
+            books={books}
             changeShelf={changeShelf}
           />
         </div>
 
-        <div className="book-title"> {books.title}</div>
+        <div className="book-title"> {title}</div>
         <div className="book-authors">
-          {books.authors &&
-            books.authors.map((author, i) => (
+          {book.authors &&
+            book.authors.map((author, i) => (
               <div className="book-authors" key={i}>
                 {author}
               </div>

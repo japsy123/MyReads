@@ -21,7 +21,8 @@ const BookShelf = props => {
                 {currentBooks.map(book => {
                   return (
                     <Books
-                      books={book}
+                      book={book}
+                      books={books}
                       curShelf={shelf.type}
                       key={book.id}
                       changeShelf={props.changeShelf}
