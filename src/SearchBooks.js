@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Books from "./Books";
 import * as BooksAPI from "./BooksAPI";
+
 export default class SearchBooks extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,6 @@ export default class SearchBooks extends Component {
       books: [],
       noBooks: false
     };
-
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 
@@ -19,12 +19,15 @@ export default class SearchBooks extends Component {
     this.setState({
       [e.target.name]: searchQuery
     });
+
     if (searchQuery) {
       BooksAPI.search(searchQuery.trim(), 20).then(books => {
         books.length > 0
           ? this.setState({ books, noBooks: false })
           : this.setState({ books: [], noBooks: true });
       });
+
+      //   Resetting books to empty array when there is no text for query
     } else this.setState({ books: [], noBooks: false });
   }
 

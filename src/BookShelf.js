@@ -3,6 +3,7 @@ import Books from "./Books";
 
 const BookShelf = props => {
   const { books } = props;
+  // Using an array of shelf so we can iterated over it along with its respective book
   const shelfTypes = [
     { type: "currentlyReading", title: "Currently Reading" },
     { type: "wantToRead", title: "Want to Read" },

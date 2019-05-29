@@ -7,8 +7,7 @@ export default class ChangeShelf extends Component {
   }
 
   handleOnclick(e) {
-    // If current shelf of the book is equal to the value then do nothing
-    //  current Shelf of the book === e.taraget.value
+    // If current shelf of the book is NOT equal to the value (the shelf selected) then do below
     if (this.props.curShelf !== e.target.value) {
       this.props.changeShelf(this.props.book, e.target.value);
     }
@@ -16,8 +15,10 @@ export default class ChangeShelf extends Component {
   render() {
     const { book, books } = this.props;
 
+    // Here, setting current shelf to none
     let currShelf = "none";
 
+    // If the book is already there in any of the shelf then set its current shelf to book.shelf
     for (let i of books) {
       if (i.id === book.id) {
         currShelf = i.shelf;

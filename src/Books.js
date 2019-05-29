@@ -5,11 +5,13 @@ import nopic from "./image/nopic.png";
 const Books = props => {
   const { book, books, changeShelf } = props;
 
+  // This logic is for any book w/o title or image
   const bgImage =
     book.imageLinks && book.imageLinks.thumbnail
       ? book.imageLinks.thumbnail
       : nopic;
   const title = book.title ? book.title : "No title for this book";
+
   return (
     <li>
       <div className="book">

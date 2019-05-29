@@ -15,6 +15,7 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    // Getting all the books using the BooksAPI
     BooksAPI.getAll().then(book => {
       this.setState(
         {
@@ -28,12 +29,14 @@ class BooksApp extends React.Component {
   }
 
   changeShelf(bookToChange, shelf) {
-    console.log(bookToChange);
-    console.log(shelf);
+    // console.log(bookToChange);
+    // console.log(shelf);
+    // Using update API to update the book'shelf
     BooksAPI.update(bookToChange, shelf).then(response => {
       bookToChange.shelf = shelf;
       this.setState(prevState => ({
         books: prevState.books
+          // Filtering the book from array and then adding using concat
           .filter(book => book.id !== bookToChange.id)
           .concat(bookToChange)
       }));
