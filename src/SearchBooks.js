@@ -22,10 +22,10 @@ export default class SearchBooks extends Component {
     if (searchQuery) {
       BooksAPI.search(searchQuery.trim(), 20).then(books => {
         books.length > 0
-          ? this.setState({ books })
+          ? this.setState({ books, noBooks: false })
           : this.setState({ books: [], noBooks: true });
       });
-    } else this.setState({ newBooks: [], noBooks: true });
+    } else this.setState({ books: [], noBooks: false });
   }
 
   render() {
